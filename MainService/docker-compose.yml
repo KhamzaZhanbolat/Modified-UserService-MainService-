@@ -1,0 +1,34 @@
+services:
+  my-backend-main-service:
+    build: .
+    image: 'main-service-image-iso'
+    container_name: 'main-service-container'
+    ports:
+      - "3699:8002"
+    environment:
+      - SERVER_PORT=8001
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5436/MainServiceDB
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+
+  DB:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=MainServiceDB
+    ports:
+      - "5438:5432"
+
+#  DB-test:
+#    image: postgres:latest
+#    environment:
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=root
+#      - POSTGRES_DB=TestMainServiceDB
+#    ports:
+#      - "5439:5432"

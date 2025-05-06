@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changelog-1.0-course.yaml
+  - include:
+      file: db/changelog/changelog-1.1-chapter.yaml
+  - include:
+      file: db/changelog/changelog-1.2-lesson.yaml
